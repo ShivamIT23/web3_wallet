@@ -2,9 +2,14 @@
 import Link from "next/link";
 import { Shield, Github, FileText, Code, Lock, AlertTriangle, ExternalLink } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 function Footer() {
-    const currentYear = new Date().getFullYear();
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+    useEffect(() => {
+        setCurrentYear(new Date().getFullYear());
+    }, []);
 
     const footerSections = [
         {
@@ -80,10 +85,10 @@ function Footer() {
                             </p>
 
                             {/* Quick Actions */}
-                            <div className="flex flex-wrap gap-3 pt-4">
+                            <div className="flex flex-wrap gap-3 pt-4 font-code">
                                 <Link
                                     href="/docs"
-                                    className="footer-cta-link glow-border-accent hover"
+                                    className="footer-cta-link glow-border-accent"
                                 >
                                     <FileText className="w-4 h-4" />
                                     <span>Documentation</span>

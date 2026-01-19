@@ -1,7 +1,12 @@
+import Brand from "./Brand"
+import Hero from "./Hero"
 
 function Main() {
   return (
-    <div className="h-[200vh]">Main</div>
+    <>
+    <Hero />
+    <Brand />
+    </>
   )
 }
 

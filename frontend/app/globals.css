@@ -6,8 +6,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space);
+  --font-heading: var(--font-inter);
+  --font-code: var(--font-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -172,6 +173,45 @@
   --highlight: oklch(0.75 0.35 200);
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+*{
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-gutter: stable;
+
+}
+
+
+body{
+  --font-sans: var(--font-space);
+  --font-heading: var(--font-inter);
+  --font-code: var(--font-mono);
+  font-family: var(--font-sans) !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -247,7 +287,7 @@ footer section {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid oklch(1 0 0 / 0.2);
   box-shadow:
-    0 8px 32px 0 oklch(0 0 0 / 0.15),
+    0 3px 12px 0 oklch(0 0 0 / 0.15),
     inset 0 1px 0 0 oklch(1 0 0 / 0.3);
 }
 
@@ -257,7 +297,7 @@ footer section {
   -webkit-backdrop-filter: blur(24px) saturate(200%);
   border: 1px solid oklch(0.7 0.28 270 / 0.15);
   box-shadow:
-    0 8px 32px 0 oklch(0 0 0 / 0.6),
+    0 8px 12px 0 oklch(0 0 0 / 0.6),
     inset 0 1px 0 0 oklch(0.8 0.35 200 / 0.1),
     0 0 20px oklch(0.7 0.28 270 / 0.08);
 }
@@ -937,6 +977,14 @@ footer {
 
 .dark .footer-cta-link:hover {
   background: oklch(0.25 0 0 / 0.4);
+}
+
+.light .footer-cta-link {
+  background: oklch(0.95 0 0);
+}
+
+.light .footer-cta-link:hover {
+  color: var(--accent);
 }
 
 .footer-security-link {
