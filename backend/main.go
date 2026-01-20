@@ -19,6 +19,8 @@ func main() {
 		fmt.Fprint(w, "World")
 	})
 
+	fmt.Println("server is running on 8005")
+
 	log.Fatal(http.ListenAndServe(":8005", nil))
 
 }
