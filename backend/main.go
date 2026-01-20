@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -18,12 +19,12 @@ func main() {
 		fmt.Fprint(w, "World")
 	})
 
-	http.ListenAndServe(":8005", nil)
+	log.Fatal(http.ListenAndServe(":8005", nil))
 
 }
 
 func testing() {
-	res, err := http.Get("http://localhost:80")
+	res, err := http.Get("https://wallet-test.shivam23.me/")
 
 	if err != nil {
 		fmt.Println("There was an error during fetching itself")
