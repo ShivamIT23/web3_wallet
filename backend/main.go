@@ -1,6 +1,7 @@
 package main
 
 import (
+	"backend/sendMail"
 	"fmt"
 	"io"
 	"log"
@@ -17,6 +18,18 @@ func main() {
 		fmt.Println("Hello")
 		testing()
 		fmt.Fprint(w, "World")
+	})
+
+	http.HandleFunc(("/send-mail"), func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("Sending Mail")
+		sendMail.SendMailFunc("shivam.gupta.23112003@gmail.com", "Mail By Wallet Guardian", "<strong>testing mail</strong>")
+		fmt.Fprint(w, "Mail Sent")
+	})
+
+	http.HandleFunc(("/send-otp"), func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("Sending OTP")
+		sendMail.SendOTPFunc("shivam.gupta.23112003@gmail.com", "1234")
+		fmt.Fprint(w, "OTP Sent")
 	})
 
 	fmt.Println("server is running on 8005")

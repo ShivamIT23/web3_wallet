@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ModeToggle } from "../common/theme-changer"
 import { useState } from "react"
+import { Button } from "../ui/button";
 
 function Header() {
     const [activeNav, setActiveNav] = useState('Home')
@@ -57,6 +58,7 @@ function Header() {
 
                 {/* Theme Toggle */}
                 <div id="theme-toggle" className="shrink-0">
+                    <Button variant={"link"} ><Link href="/login">Login</Link></Button>
                     <ModeToggle />
                 </div>
 
