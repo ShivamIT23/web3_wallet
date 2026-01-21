@@ -2,13 +2,13 @@ package sendMail
 
 import (
 	"fmt"
+	"os"
 	"strings"
-
 	"github.com/resend/resend-go/v3"
 )
 
 func SendMailFunc(to, subject, html string) {
-	apiKey := "re_QED23mUd_4v8BdPJiw4zRest1dQvQq4kB"
+	apiKey := os.Getenv("RESEND_API_KEY")
 
 	client := resend.NewClient(apiKey)
 
@@ -28,7 +28,7 @@ func SendMailFunc(to, subject, html string) {
 }
 
 func SendOTPFunc(to, otp string) {
-	apiKey := "re_QED23mUd_4v8BdPJiw4zRest1dQvQq4kB"
+	apiKey := os.Getenv("RESEND_API_KEY")
 
 	client := resend.NewClient(apiKey)
 	htmlTemplate := `<!DOCTYPE html>
