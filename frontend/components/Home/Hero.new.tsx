@@ -4,8 +4,16 @@ import { ArrowRight, ShieldCheck } from "lucide-react"
 
 function Hero() {
   return (
-    <section className="relative h-[50vh] min-h-fit flex items-center justify-center w-full max-w-6xl md:mx-auto px-[2vw] gap-20">
-        {/* Text Content */}
+    <section className="relative w-full overflow-hidden pt-20 pb-32 md:pt-32">
+        {/* Background Gradients */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] opacity-50"></div>
+            <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[100px] opacity-50"></div>
+        </div>
+
+        <div className="container px-4 md:px-6 mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-12 md:gap-24">
+            
+            {/* Text Content */}
             <div className="flex flex-col items-start space-y-8 flex-1">
                 <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-sm text-primary font-medium">
                     <ShieldCheck className="mr-2 h-4 w-4" />
@@ -43,8 +51,23 @@ function Hero() {
                     <span>Trusted by 50,000+ users</span>
                 </div>
             </div>
-        <div>
-            <Image alt="Logo" src={"/logo_main.png"} width={400} height={400}></Image>
+
+            {/* Hero Image */}
+            <div className="flex-1 relative w-full flex justify-center md:justify-end">
+                <div className="relative w-[350px] h-[350px] md:w-[500px] md:h-[500px]">
+                    {/* Glowing effect behind image */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-purple-500/30 rounded-full blur-[60px] animate-pulse"></div>
+                    
+                    <Image 
+                        alt="Wallet Guardian Interface" 
+                        src={"/logo_main.png"} 
+                        width={500} 
+                        height={500}
+                        className="relative z-10 w-full h-full object-contain drop-shadow-2xl animate-[float_6s_ease-in-out_infinite]"
+                        priority
+                    />
+                </div>
+            </div>
         </div>
     </section>
   )
