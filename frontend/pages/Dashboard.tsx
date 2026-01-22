@@ -1,6 +1,8 @@
+import Main from "@wallet/components/Dashboard/Main"
+
 function Dashboard() {
     return (
-        <div>Dashboard</div>
+        <Main />
     )
 }
 

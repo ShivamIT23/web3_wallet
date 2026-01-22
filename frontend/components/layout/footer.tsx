@@ -2,14 +2,9 @@
 import Link from "next/link";
 import { Shield, Github, FileText, Code, Lock, AlertTriangle, ExternalLink } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 function Footer() {
-    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-
-    useEffect(() => {
-        setCurrentYear(new Date().getFullYear());
-    }, []);
+    const currentYear = new Date().getFullYear();
 
     const footerSections = [
         {
@@ -25,7 +20,7 @@ function Footer() {
             title: "Developers",
             links: [
                 { name: "Documentation", href: "/docs", icon: FileText },
-                { name: "GitHub", href: "https://github.com", icon: Github, external: true },
+                { name: "GitHub", href: "https://github.com/ShivamIT23/web3_wallet", icon: Github, external: true },
                 { name: "API / SDK", href: "/api", icon: Code },
                 { name: "Changelog", href: "/changelog" },
             ]

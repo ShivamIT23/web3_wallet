@@ -3,10 +3,12 @@ import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Button } from "@wallet/components/ui/button";
+import Link from "next/link";
 
 export default function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [acceptTerms, setAcceptTerms] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
@@ -15,6 +17,12 @@ export default function RegisterPage() {
 
     const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        
+        if (!acceptTerms) {
+            alert("Please accept the Terms & Conditions to continue.");
+            return;
+        }
+        
         setIsLoading(true);
 
         try {
@@ -127,6 +135,23 @@ export default function RegisterPage() {
                                 className="w-full bg-secondary/30 border border-white/5 text-foreground rounded-lg px-4 py-3 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all placeholder:text-muted-foreground/50 hover:bg-secondary/40"
                                 placeholder="••••••••"
                             />
+                        </div>
+
+                        {/* Terms & Conditions Checkbox */}
+                        <div className="flex items-start gap-3">
+                            <input
+                                type="checkbox"
+                                id="acceptTerms"
+                                checked={acceptTerms}
+                                onChange={(e) => setAcceptTerms(e.target.checked)}
+                                className="mt-1 w-4 h-4 rounded border-white/20 bg-secondary/30 text-primary focus:ring-primary/50 focus:ring-offset-0 cursor-pointer"
+                            />
+                            <label htmlFor="acceptTerms" className="text-sm text-muted-foreground cursor-pointer">
+                                I agree to the{" "}
+                                <Link href="/terms" className="text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors">
+                                    Terms & Conditions
+                                </Link>
+                            </label>
                         </div>
 
                         <Button
