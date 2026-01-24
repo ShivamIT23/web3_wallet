@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
@@ -13,6 +14,8 @@ import (
 
 // JWTSecret should be set from environment variable in production
 var JWTSecret = []byte("your-jwt-secret-key-change-in-production")
+
+var frontend_url = os.Getenv("FRONTEND_URI")
 
 // AuthResponse represents the response for successful authentication
 type AuthResponse struct {
@@ -97,7 +100,7 @@ func HandleAuthCallback(w http.ResponseWriter, r *http.Request) {
 	user, err := gothic.CompleteUserAuth(w, r)
 	if err != nil {
 		// Redirect to frontend with error
-		frontendURL := "http://localhost:3000/login?error=" + err.Error()
+		frontendURL := frontend_url + "/login?error=" + err.Error()
 		http.Redirect(w, r, frontendURL, http.StatusTemporaryRedirect)
 		return
 	}
@@ -113,7 +116,7 @@ func HandleAuthCallback(w http.ResponseWriter, r *http.Request) {
 	// Redirect to frontend with token in URL fragment (hash)
 	// The frontend will capture this and store it
 	frontendURL := fmt.Sprintf(
-		"http://localhost:3000/auth/callback?token=%s&provider=%s&name=%s&email=%s&avatar=%s",
+		frontend_url+"/auth/callback?token=%s&provider=%s&name=%s&email=%s&avatar=%s",
 		token,
 		provider,
 		user.Name,
