@@ -9,13 +9,22 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/joho/godotenv"
 	"github.com/markbates/goth/gothic"
 )
 
 // JWTSecret should be set from environment variable in production
 var JWTSecret = []byte("your-jwt-secret-key-change-in-production")
 
-var frontend_url = os.Getenv("FRONTEND_URI")
+var frontend_url string
+
+func init() {
+	godotenv.Load()
+	frontend_url = os.Getenv("FRONTEND_URI")
+	if frontend_url == "" {
+		frontend_url = "http://localhost:3000"
+	}
+}
 
 // AuthResponse represents the response for successful authentication
 type AuthResponse struct {
